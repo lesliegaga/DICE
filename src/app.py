@@ -56,7 +56,7 @@ flags.DEFINE_multi_integer('topk', [20, 50], 'Topk for testing recommendation pe
 flags.DEFINE_integer('num_workers', 8, 'Number of processes for training and testing.')
 flags.DEFINE_string('load_path', '', 'Load path.')
 flags.DEFINE_string('workspace', './', 'Path to load ckpt.')
-flags.DEFINE_string('output', '/home/zhengyu/workspace/DICE/output/', 'Directory to save model/log/metrics.')
+flags.DEFINE_string('output', '../output/', 'Directory to save model/log/metrics.')
 flags.DEFINE_integer('port', 33336, 'Port to show visualization results.')
 
 
