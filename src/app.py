@@ -64,13 +64,14 @@ def main(argv):
 
     flags_obj = FLAGS
     cm = utils.ContextManager(flags_obj)
-    vm = utils.VizManager(flags_obj)
+    # vm = utils.VizManager(flags_obj)
+    vm = None
     dm = utils.DatasetManager(flags_obj)
     dm.get_dataset_info()
 
     cm.set_default_ui()
     cm.logging_flags(flags_obj)
-    vm.show_basic_info(flags_obj)
+    # vm.show_basic_info(flags_obj)
     trainer = utils.ContextManager.set_trainer(flags_obj, cm, vm, dm)
     trainer.train()
 

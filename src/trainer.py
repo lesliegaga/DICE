@@ -73,13 +73,15 @@ class Trainer(object):
             self.recommender.load_ckpt(self.max_epoch)
             logging.info('best epoch: {}'.format(self.max_epoch))
 
-        self.vm.show_test_info(self.flags_obj)
+        if self.vm is not None:
+            self.vm.show_test_info(self.flags_obj)
 
         for topk in self.flags_obj.topk:
 
             self.tester.max_topk = topk
             results = self.tester.test(self.flags_obj.num_test_users)
-            self.vm.show_result(results, topk)
+            if self.vm is not None:
+                self.vm.show_result(results, topk)
 
             logging.info('TEST results topk = {}:'.format(topk))
             for metric, value in results.items():
@@ -107,7 +109,8 @@ class Trainer(object):
 
         self.max_metric = -1.0
         self.max_epoch = -1
-        self.leaderboard = self.vm.get_new_text_window('leaderboard')
+        if self.vm is not None:
+            self.leaderboard = self.vm.get_new_text_window('leaderboard')
 
     def update_leaderboard(self, epoch, metric):
 
@@ -116,7 +119,8 @@ class Trainer(object):
             self.max_metric = metric
             self.max_epoch = epoch
 
-            self.vm.append_text('New Record! {} @ epoch {}!'.format(metric, epoch), self.leaderboard)
+            if self.vm is not None:
+                self.vm.append_text('New Record! {} @ epoch {}!'.format(metric, epoch), self.leaderboard)
 
     def adapt_hyperparameters(self, epoch):
 
@@ -155,7 +159,8 @@ class Trainer(object):
             total_loss += loss.item()
 
             if batch_count % 1000 == 0:
-                self.vm.step_update_line('loss every 1k step', loss.item())
+                if self.vm is not None:
+                    self.vm.step_update_line('loss every 1k step', loss.item())
 
             if batch_count % (num_batch // 5) == num_batch // 5 - 1:
 
@@ -163,11 +168,13 @@ class Trainer(object):
                 running_loss = 0.0
 
         logging.info('epoch {}: total loss = {}'.format(epoch, total_loss))
-        self.vm.step_update_line('epoch loss', total_loss)
-        self.vm.step_update_line('distance', self.distances.mean())
+        if self.vm is not None:
+            self.vm.step_update_line('epoch loss', total_loss)
+            self.vm.step_update_line('distance', self.distances.mean())
 
         time_cost = time.time() - start_time
-        self.vm.step_update_line('train time cost', time_cost)
+        if self.vm is not None:
+            self.vm.step_update_line('train time cost', time_cost)
 
         return lr
 
@@ -179,10 +186,12 @@ class Trainer(object):
 
         start_time = time.time()
         results = self.tester.test(self.flags_obj.num_val_users)
-        self.vm.step_update_multi_lines(results)
+        if self.vm is not None:
+            self.vm.step_update_multi_lines(results)
         logging.info('VALIDATION epoch: {}, results: {}'.format(epoch, results))
         time_cost = time.time() - start_time
-        self.vm.step_update_line('validate time cost', time_cost)
+        if self.vm is not None:
+            self.vm.step_update_line('validate time cost', time_cost)
 
         return results[self.flags_obj.watch_metric]
 
@@ -382,7 +391,8 @@ class DICETrainer(Trainer):
             total_loss += loss.item()
 
             if batch_count % 1000 == 0:
-                self.vm.step_update_line('loss every 1k step', loss.item())
+                if self.vm is not None:
+                    self.vm.step_update_line('loss every 1k step', loss.item())
 
             if batch_count % (num_batch // 5) == num_batch // 5 - 1:
 
@@ -391,10 +401,12 @@ class DICETrainer(Trainer):
                 running_loss = 0.0
 
         logging.info('epoch {}: total loss = {}'.format(epoch, total_loss))
-        self.vm.step_update_line('epoch loss', total_loss)
+        if self.vm is not None:
+            self.vm.step_update_line('epoch loss', total_loss)
 
         time_cost = time.time() - start_time
-        self.vm.step_update_line('train time cost', time_cost)
+        if self.vm is not None:
+            self.vm.step_update_line('train time cost', time_cost)
 
         return lr
 
