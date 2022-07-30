@@ -41,7 +41,7 @@ class Trainer(object):
     def train(self):
 
         self.set_dataloader()
-        self.tester.set_dataloader('val')
+        self.tester.set_dataloader('test')
         self.tester.set_metrics(self.flags_obj.val_metrics)
         self.set_optimizer()
         self.set_scheduler()
