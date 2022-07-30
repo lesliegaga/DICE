@@ -50,6 +50,8 @@ class ContextManager(object):
             flags_obj.load_path = const_util.ml10m
         elif flags_obj.dataset == 'nf':
             flags_obj.load_path = const_util.nf
+        elif flags_obj.dataset == 'amazonbook':
+            flags_obj.load_path = const_util.amazonbook
 
     def set_default_ui(self):
 
