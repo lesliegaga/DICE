@@ -70,14 +70,14 @@ class Tester(object):
                     break
 
                 users, train_pos, test_pos, num_test_pos = data
-                print("users, train_pos, test_pos, num_test_pos:", users, train_pos, test_pos, num_test_pos)
+                # print("users, train_pos, test_pos, num_test_pos:", users, train_pos, test_pos, num_test_pos)
                 users = users.squeeze()
 
                 items = self.recommender.cg(users, self.cg_topk)
-                print("items:", items)
+                # print("items:", items)
 
                 items = self.filter_history(items, train_pos)
-                print("filter_items:", items)
+                # print("filter_items:", items)
 
                 batch_results, valid_num_users = self.judger.judge(items, test_pos, num_test_pos)
 
