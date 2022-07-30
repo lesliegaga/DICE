@@ -52,7 +52,7 @@ class Tester(object):
         self.judger = metrics.Judger(flags_obj, dm, self.max_topk)
 
     def test(self, num_test_users):
-
+        print("num_test_users:", num_test_users)
         real_num_test_users = 0
 
         with torch.no_grad():
@@ -70,11 +70,14 @@ class Tester(object):
                     break
 
                 users, train_pos, test_pos, num_test_pos = data
+                print("users:", users)
                 users = users.squeeze()
 
                 items = self.recommender.cg(users, self.cg_topk)
+                print("items:", items)
 
                 items = self.filter_history(items, train_pos)
+                print("filter_items:", items)
 
                 batch_results, valid_num_users = self.judger.judge(items, test_pos, num_test_pos)
 
