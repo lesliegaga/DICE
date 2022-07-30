@@ -70,7 +70,7 @@ class Tester(object):
                     break
 
                 users, train_pos, test_pos, num_test_pos = data
-                print("users:", users)
+                print("users, train_pos, test_pos, num_test_pos:", users, train_pos, test_pos, num_test_pos)
                 users = users.squeeze()
 
                 items = self.recommender.cg(users, self.cg_topk)
