@@ -52,6 +52,12 @@ class ContextManager(object):
             flags_obj.load_path = const_util.nf
         elif flags_obj.dataset == 'amazonbook':
             flags_obj.load_path = const_util.amazonbook
+        elif flags_obj.dataset == 'movielens':
+            flags_obj.load_path = const_util.movielens
+        elif flags_obj.dataset == 'yelp':
+            flags_obj.load_path = const_util.yelp
+        elif flags_obj.dataset == 'lastfm':
+            flags_obj.load_path = const_util.lastfm
 
     def set_default_ui(self):
 
