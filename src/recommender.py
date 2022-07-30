@@ -377,7 +377,7 @@ class LGNDICERecommender(DICERecommender):
         coo_loader = LOADER.CooLoader(flags_obj)
         self.coo_adj_graph = coo_loader.load(const_util.train_blend_coo_adj_graph)
 
-        self.graph = dgl.DGLGraph().to('cuda')
+        self.graph = dgl.DGLGraph().to('cuda:1')
 
         num_nodes = self.coo_adj_graph.shape[0]
         self.graph.add_nodes(num_nodes)

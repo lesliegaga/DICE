@@ -63,7 +63,7 @@ flags.DEFINE_integer('port', 33336, 'Port to show visualization results.')
 
 def main(argv):
     flags_obj = FLAGS
-    os.environ["CUDA_VISIBLE_DEVICES"] = str(flags_obj.gpu_id)
+    # os.environ["CUDA_VISIBLE_DEVICES"] = str(flags_obj.gpu_id)
     cm = utils.ContextManager(flags_obj)
     # vm = utils.VizManager(flags_obj)
     vm = None
