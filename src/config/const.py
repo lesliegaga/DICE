@@ -8,6 +8,9 @@
 ml10m = '../data/ml10m/output/'
 nf = '../data/netflix/output/'
 amazonbook= '../data/amazon-book/output/'
+movielens= '../data/movie-lens/output/'
+yelp= '../data/yelp2018/output/'
+lastfm= '../data/last-fm/output/'
 
 coo_record = 'coo_record.npz'
 train_coo_record = 'train_coo_record.npz'
