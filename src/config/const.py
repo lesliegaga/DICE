@@ -11,6 +11,8 @@ amazonbook= '../data/amazon-book/output/'
 movielens= '../data/movie-lens/output/'
 yelp= '../data/yelp2018/output/'
 lastfm= '../data/last-fm/output/'
+lastfm55= '../data/last-fm/output_5_5/'
+lastfm991= '../data/last-fm/output_99_1/'
 
 coo_record = 'coo_record.npz'
 train_coo_record = 'train_coo_record.npz'

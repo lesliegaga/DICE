@@ -58,6 +58,11 @@ class ContextManager(object):
             flags_obj.load_path = const_util.yelp
         elif flags_obj.dataset == 'lastfm':
             flags_obj.load_path = const_util.lastfm
+        elif flags_obj.dataset == 'lastfm55':
+            flags_obj.load_path = const_util.lastfm55
+        elif flags_obj.dataset == 'lastfm991':
+            flags_obj.load_path = const_util.lastfm991
+
 
     def set_default_ui(self):
 
